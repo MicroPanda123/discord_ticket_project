@@ -11,10 +11,14 @@ blocks:
         - name: APP_ENV
           value: prod
       jobs:
-        - name: Install dependencies
+        - name: Get right python version
           commands:
             - checkout
-            - pip install -r requirements.txt
+            - apt-get install python3.8
+        - name: Get dependencies
+          commands:
+            - checkout
+            - pip3 install -r requirements.txt
   - name: Test run
     task:
       jobs:
