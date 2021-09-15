@@ -14,7 +14,7 @@ blocks:
         - name: Install dependencies
           commands:
             - checkout
-            - pip install -r requirements
+            - pip install -r requirements.txt
   - name: Test run
     task:
       jobs:
