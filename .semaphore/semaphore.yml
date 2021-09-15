@@ -11,14 +11,17 @@ blocks:
         - name: APP_ENV
           value: prod
       jobs:
-        - name: Get right python version
-          commands:
-            - checkout
-            - apt-get install python3.8
         - name: Get dependencies
           commands:
             - checkout
-            - pip3 install -r requirements.txt
+            - cache restore
+            - pip3 install --cache-dir .cache -r requirements.txt
+            - cache store
+      prologue:
+        commands:
+          - sudo apt-get update && \
+          - '     sudo apt-get install -y python3-dev && \'
+          - '     sudo apt-get install default-libmysqlclient-dev'
   - name: Test run
     task:
       jobs:
